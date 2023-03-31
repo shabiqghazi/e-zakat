@@ -1,15 +1,16 @@
-import { atom } from "jotai";
 import { auth } from "../config/fbconfig";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
 
-const email = atom("");
-const password = atom("");
-
-export const signUpAtom = atom(async (get) => {
-  await createUserWithEmailAndPassword(auth, get(email), get(password));
-});
-export const logInAtom = atom(async (get) => {
-  await signInWithEmailAndPassword(auth, get(email), get(password));
-});
-export const logOutAtom = atom(async () => {
+export const signUp = async (email, password) => {
+  await createUserWithEmailAndPassword(auth, email, password);
+};
+export const _signIn = async (email, password) => {
+  await signInWithEmailAndPassword(auth, email, password);
+};
+export const _signOut = async () => {
   await signOut(auth);
-});
+};

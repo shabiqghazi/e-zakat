@@ -1,26 +1,39 @@
-import logo from "./logo.svg";
 import "./App.css";
-import { createRoot } from "react-dom/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-  Link,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Register from "./modules/Auth/Register";
+import Login from "./modules/Auth/Login";
+import DashboardMuzzaki from "./modules/Dashboard/Muzzaki";
+import MyBottomNavigation from "./shared-components/MyBottomNavigation";
+import { PageWrapper } from "./shared-components/PageWrapper";
 
+const PageWrapperWithBottomNav = ({ children }) => {
+  return (
+    <div className="flex flex-col h-screen">
+      <div className="grow overflow-auto">{children}</div>
+      <MyBottomNavigation />
+    </div>
+  );
+};
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <div>
-        <h1>Hello World</h1>
-        <Link to="about">About Us</Link>
-      </div>
+      <PageWrapper>
+        <DashboardMuzzaki />
+      </PageWrapper>
     ),
   },
   {
-    path: "about",
-    element: <div>About</div>,
+    path: "splash",
+    element: <h1>Hello World</h1>,
+  },
+  {
+    path: "register",
+    element: <Register />,
+  },
+  {
+    path: "login",
+    element: <Login />,
   },
 ]);
 

@@ -1,7 +1,7 @@
 import React from "react";
 
 const DashboardMuzzaki = () => {
-  return <div>DashboardMuzzaki</div>;
+  return <div></div>;
 };
 
 export default DashboardMuzzaki;
