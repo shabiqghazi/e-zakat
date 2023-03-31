@@ -1,7 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router";
 import HomeBanner from "../../shared-components/home-banner.png";
 
 const Homepage = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="mt-5 relative">
@@ -21,7 +23,7 @@ const Homepage = () => {
             <i className="pi pi-history" style={{ fontSize: "20pt" }}></i>
             <p>History</p>
           </button>
-          <button className="flex flex-col gap-2 items-center w-full py-4 justify-center text-white bg-red-400">
+          <button onClick={() => navigate("/faq")} className="flex flex-col gap-2 items-center w-full py-4 justify-center text-white bg-red-400">
             <i
               className="pi pi-question-circle"
               style={{ fontSize: "20pt" }}

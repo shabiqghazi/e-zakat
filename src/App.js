@@ -4,6 +4,8 @@ import Register from "./modules/Auth/Register";
 import Login from "./modules/Auth/Login";
 import { PageWrapper } from "./shared-components/PageWrapper";
 import Homepage from "./modules/Homepage";
+import Faq from "./modules/Faq";
+import ContactAdmin from "./modules/ContactAdmin";
 
 const router = createBrowserRouter([
   {
@@ -38,7 +40,7 @@ const router = createBrowserRouter([
     path: "chat",
     element: (
       <PageWrapper>
-        <p>Message</p>
+        <ContactAdmin />
       </PageWrapper>
     ),
   },
@@ -47,6 +49,14 @@ const router = createBrowserRouter([
     element: (
       <PageWrapper>
         <p>Profil</p>
+      </PageWrapper>
+    ),
+  },
+  {
+    path: "faq",
+    element: (
+      <PageWrapper>
+        <Faq />
       </PageWrapper>
     ),
   },

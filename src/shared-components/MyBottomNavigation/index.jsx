@@ -18,7 +18,7 @@ const MyBottomNavigation = () => {
     },
     {
       id: 2,
-      title: "Message",
+      title: "Contact Admin",
       icon: "pi pi-comments",
       url: "/chat",
     },
@@ -39,9 +39,8 @@ const MyBottomNavigation = () => {
       {menu.map((m, index) => (
         <div
           key={index}
-          className={`flex flex-col gap-1 text-sm w-full justify-center active:bg-teal-100 items-center ${
-            value === m.id ? "border-b-4 border-teal-500 text-teal-500" : ""
-          }`}
+          className={`flex flex-col gap-1 text-sm w-full justify-center active:bg-teal-100 items-center ${value === m.id ? "border-b-4 border-teal-500 text-teal-500" : ""
+            }`}
           onClick={() => {
             navigate(m.url);
             setValue(m.id);
