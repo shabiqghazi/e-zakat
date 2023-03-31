@@ -4,6 +4,8 @@ import Register from "./modules/Auth/Register";
 import Login from "./modules/Auth/Login";
 import { PageWrapper } from "./shared-components/PageWrapper";
 import Homepage from "./modules/Homepage";
+import Faq from "./modules/Faq";
+import ContactAdmin from "./modules/ContactAdmin";
 import ZakatCalculate from "./modules/Zakat/Calculate";
 import Zakat from "./modules/Zakat";
 import ZakatPay from "./modules/Zakat/Pay";
@@ -101,7 +103,7 @@ const router = createBrowserRouter([
     element: (
       <CheckUserAuth>
         <PageWrapper>
-          <p>Message</p>
+          <ContactAdmin />
         </PageWrapper>
       </CheckUserAuth>
     ),
@@ -114,6 +116,14 @@ const router = createBrowserRouter([
           <Profile />
         </PageWrapper>
       </CheckUserAuth>
+    ),
+  },
+  {
+    path: "faq",
+    element: (
+      <PageWrapper>
+        <Faq />
+      </PageWrapper>
     ),
   },
 ]);
