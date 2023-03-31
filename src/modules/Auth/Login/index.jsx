@@ -1,16 +1,27 @@
 import React, { useState } from "react";
 import { _signIn } from "../../../services/authservices";
+import { auth } from "../../../config/fbconfig";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { AuthPageWrapper } from "../shared-components/AuthPageWrapper";
+import { useAtom } from "jotai";
+import { userAtom } from "../../../states/authstates";
+import { useNavigate } from "react-router";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [user, setUser] = useAtom(userAtom);
+  const navigate = useNavigate();
 
   const handleSignIn = async (e) => {
     e.preventDefault();
-    await _signIn(email, password);
+    try {
+      await _signIn(email, password);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <AuthPageWrapper title="Login">
@@ -40,9 +51,9 @@ const Register = () => {
             required
           />
         </div>
-        <div>
-          <Button type="submit">Login</Button>
-        </div>
+        <Button type="submit" className="w-full flex justify-center">
+          Login
+        </Button>
       </form>
     </AuthPageWrapper>
   );

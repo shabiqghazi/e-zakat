@@ -38,9 +38,9 @@ const Register = () => {
             required
           />
         </div>
-        <div>
-          <Button type="submit">Register</Button>
-        </div>
+        <Button type="submit" className="w-full flex justify-center">
+          <p>Register</p>
+        </Button>
       </form>
     </AuthPageWrapper>
   );

@@ -1,8 +1,23 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router";
 const MyBottomNavigation = () => {
   const [value, setValue] = useState(0);
   const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    switch (location.pathname.split("/")[1]) {
+      case "zakat":
+        setValue(1);
+        break;
+      case "chat":
+        setValue(2);
+        break;
+      case "profile":
+        setValue(3);
+        break;
+    }
+  });
+
   const menu = [
     {
       id: 0,
@@ -31,7 +46,7 @@ const MyBottomNavigation = () => {
   ];
   return (
     <div
-      className="flex w-screen h-16 justify-around border-t border-slate-200 text-gray-700"
+      className="flex w-screen h-16 shrink-0 justify-around border-t border-slate-200 text-gray-700"
       onChange={(event, newValue) => {
         setValue(newValue);
       }}
