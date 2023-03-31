@@ -2,18 +2,9 @@ import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Register from "./modules/Auth/Register";
 import Login from "./modules/Auth/Login";
-import MyBottomNavigation from "./shared-components/MyBottomNavigation";
 import { PageWrapper } from "./shared-components/PageWrapper";
 import Homepage from "./modules/Homepage";
 
-const PageWrapperWithBottomNav = ({ children }) => {
-  return (
-    <div className="flex flex-col h-screen">
-      <div className="grow overflow-auto">{children}</div>
-      <MyBottomNavigation />
-    </div>
-  );
-};
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,6 +25,30 @@ const router = createBrowserRouter([
   {
     path: "login",
     element: <Login />,
+  },
+  {
+    path: "zakat",
+    element: (
+      <PageWrapper>
+        <p>Zakat</p>
+      </PageWrapper>
+    ),
+  },
+  {
+    path: "chat",
+    element: (
+      <PageWrapper>
+        <p>Message</p>
+      </PageWrapper>
+    ),
+  },
+  {
+    path: "profile",
+    element: (
+      <PageWrapper>
+        <p>Profil</p>
+      </PageWrapper>
+    ),
   },
 ]);
 
