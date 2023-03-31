@@ -36,8 +36,9 @@ const MyBottomNavigation = () => {
         setValue(newValue);
       }}
     >
-      {menu.map((m) => (
+      {menu.map((m, index) => (
         <div
+          key={index}
           className={`flex flex-col gap-1 text-sm w-full justify-center active:bg-teal-100 items-center ${
             value === m.id ? "border-b-4 border-teal-500 text-teal-500" : ""
           }`}
