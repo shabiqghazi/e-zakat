@@ -4,50 +4,116 @@ import Register from "./modules/Auth/Register";
 import Login from "./modules/Auth/Login";
 import { PageWrapper } from "./shared-components/PageWrapper";
 import Homepage from "./modules/Homepage";
+import ZakatCalculate from "./modules/Zakat/Calculate";
+import Zakat from "./modules/Zakat";
+import ZakatPay from "./modules/Zakat/Pay";
+import Profile from "./modules/Profile";
+import Splash from "./modules/Splash";
+import { CheckUserAuth } from "./services/CheckUserAuth";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <PageWrapper>
-        <Homepage />
-      </PageWrapper>
+      <CheckUserAuth>
+        <PageWrapper>
+          <Homepage />
+        </PageWrapper>
+      </CheckUserAuth>
     ),
   },
   {
     path: "splash",
-    element: <h1>Hello World</h1>,
+    element: (
+      <CheckUserAuth>
+        <Splash />
+      </CheckUserAuth>
+    ),
   },
   {
     path: "register",
-    element: <Register />,
+    element: (
+      <CheckUserAuth>
+        <Register />
+      </CheckUserAuth>
+    ),
   },
   {
     path: "login",
-    element: <Login />,
+    element: (
+      <CheckUserAuth>
+        <Login />
+      </CheckUserAuth>
+    ),
   },
   {
     path: "zakat",
     element: (
-      <PageWrapper>
-        <p>Zakat</p>
-      </PageWrapper>
+      <CheckUserAuth>
+        <PageWrapper title="Zakat">
+          <Zakat />
+        </PageWrapper>
+      </CheckUserAuth>
+    ),
+  },
+  {
+    path: "zakat/pay",
+    element: (
+      <CheckUserAuth>
+        <PageWrapper title="Zakat Payment">
+          <ZakatPay />
+        </PageWrapper>
+      </CheckUserAuth>
+    ),
+  },
+  {
+    path: "zakat/calculate",
+    element: (
+      <CheckUserAuth>
+        <PageWrapper title="Calculate Your Zakat">
+          <ZakatCalculate />
+        </PageWrapper>
+      </CheckUserAuth>
+    ),
+  },
+  {
+    path: "history",
+    element: (
+      <CheckUserAuth>
+        <PageWrapper>
+          <p>History</p>
+        </PageWrapper>
+      </CheckUserAuth>
+    ),
+  },
+  {
+    path: "faq",
+    element: (
+      <CheckUserAuth>
+        <PageWrapper>
+          <p>Frequently Asked Questions</p>
+        </PageWrapper>
+      </CheckUserAuth>
     ),
   },
   {
     path: "chat",
     element: (
-      <PageWrapper>
-        <p>Message</p>
-      </PageWrapper>
+      <CheckUserAuth>
+        <PageWrapper>
+          <p>Message</p>
+        </PageWrapper>
+      </CheckUserAuth>
     ),
   },
   {
     path: "profile",
     element: (
-      <PageWrapper>
-        <p>Profil</p>
-      </PageWrapper>
+      <CheckUserAuth>
+        <PageWrapper>
+          <Profile />
+        </PageWrapper>
+      </CheckUserAuth>
     ),
   },
 ]);
