@@ -2,9 +2,9 @@ import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Register from "./modules/Auth/Register";
 import Login from "./modules/Auth/Login";
-import DashboardMuzzaki from "./modules/Dashboard/Muzzaki";
 import MyBottomNavigation from "./shared-components/MyBottomNavigation";
 import { PageWrapper } from "./shared-components/PageWrapper";
+import Homepage from "./modules/Homepage";
 
 const PageWrapperWithBottomNav = ({ children }) => {
   return (
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <PageWrapper>
-        <DashboardMuzzaki />
+        <Homepage />
       </PageWrapper>
     ),
   },
