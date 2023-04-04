@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useRef } from "react";
 import { _signOut } from "../../services/authservices";
-import { useNavigate } from "react-router";
 import { Button } from "primereact/button";
+import { Toast } from "primereact/toast";
 
 const Profile = () => {
-  const navigate = useNavigate();
+  const toast = useRef(null);
   const handleLogout = async () => {
-    await _signOut();
-    navigate("/login");
+    try {
+      await _signOut();
+    } catch (err) {
+      toast.current.show({
+        severity: "error",
+        summary: "Error",
+        detail: err.message,
+        life: 3000,
+      });
+    }
   };
-  return <Button onClick={() => handleLogout()}>Logout</Button>;
+  return (
+    <>
+      <Toast ref={toast} />
+      <Button onClick={() => handleLogout()}>Logout</Button>;
+    </>
+  );
 };
 
 export default Profile;

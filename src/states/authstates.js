@@ -1,3 +1,4 @@
 import { atom } from "jotai";
 
-export const userAtom = atom(null);
+// export const userDataAtom = atom(JSON.parse(localStorage.getItem("userData")));
+export const userDataAtom = atom({});

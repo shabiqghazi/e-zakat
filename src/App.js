@@ -12,6 +12,8 @@ import ZakatPay from "./modules/Zakat/Pay";
 import Profile from "./modules/Profile";
 import Splash from "./modules/Splash";
 import { CheckUserAuth } from "./services/CheckUserAuth";
+import History from "./modules/History";
+import ZakatManagement from "./modules/Admin/Zakat/Management";
 
 const router = createBrowserRouter([
   {
@@ -79,21 +81,21 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "history",
+    path: "zakat/manage",
     element: (
-      <CheckUserAuth>
-        <PageWrapper>
-          <p>History</p>
+      <CheckUserAuth adminOnly={true}>
+        <PageWrapper title="Zakat Management">
+          <ZakatManagement />
         </PageWrapper>
       </CheckUserAuth>
     ),
   },
   {
-    path: "faq",
+    path: "history",
     element: (
       <CheckUserAuth>
         <PageWrapper>
-          <p>Frequently Asked Questions</p>
+          <History />
         </PageWrapper>
       </CheckUserAuth>
     ),

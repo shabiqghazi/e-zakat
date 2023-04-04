@@ -1,4 +1,4 @@
-import { db } from "../config/fbconfig";
+import { auth, db } from "../config/fbconfig";
 import {
   addDoc,
   collection,
@@ -7,6 +7,8 @@ import {
   getDocs,
   updateDoc,
   deleteDoc,
+  where,
+  query,
 } from "firebase/firestore";
 
 const transactionsDBRef = collection(db, "transactions");
@@ -16,6 +18,13 @@ export const addTransaction = (data) => {
 };
 export const getTransactions = () => {
   return getDocs(transactionsDBRef);
+};
+export const getTransactionsByUser = () => {
+  const q = query(
+    transactionsDBRef,
+    where("user_uid", "==", auth.currentUser.uid)
+  );
+  return getDocs(q);
 };
 export const getTransaction = (id) => {
   const transactionsRef = doc(db, "transactions", id);

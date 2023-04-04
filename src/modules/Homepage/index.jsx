@@ -1,8 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import HomeBanner from "../../shared-components/home-banner.png";
+import { userDataAtom } from "../../states/authstates";
+import { useAtom } from "jotai";
 
 const Homepage = () => {
+  const [userData, setUserData] = useAtom(userDataAtom);
+
   const navigate = useNavigate();
   return (
     <>
@@ -10,7 +14,7 @@ const Homepage = () => {
         <img src={HomeBanner} className="w-full" alt="" />
         <p className="absolute -bottom-4 shadow-xl right-0 text-white bg-teal-500 max-w-[250px] px-5 py-2 rounded-tr-3xl rounded-b-3xl">
           Welcome back, <br />
-          <span className="font-bold">Shabiq Ghazi Arkaan</span>
+          <span className="font-bold">{userData.displayName}</span>
         </p>
       </div>
       <div className="flex flex-col mt-12 w-full gap-2">

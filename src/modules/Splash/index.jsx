@@ -5,10 +5,10 @@ import { useNavigate } from "react-router";
 const Splash = () => {
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col h-screen justify-evenly p-5 bg-teal-500">
+    <div className="flex flex-col h-screen justify-evenly p-5 bg-teal-500 items-center">
       <p className="text-2xl font-bold text-center text-white">Zakat</p>
-      <img src={splash} alt="" />
-      <div className="flex flex-col gap-4">
+      <img src={splash} alt="" className="max-w-md" />
+      <div className="flex flex-col gap-4 w-full max-w-md">
         <button
           className="border-white border-2 py-3 rounded-lg text-white shadow-lg"
           onClick={() => navigate("/login")}
@@ -16,7 +16,7 @@ const Splash = () => {
           Login
         </button>
         <button
-          className="bg-white rounded-lg py-3 text-teal-500 shadow-lg"
+          className="bg-white rounded-lg  py-3 text-teal-500 shadow-lg"
           onClick={() => navigate("/register")}
         >
           Register

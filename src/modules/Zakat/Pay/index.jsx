@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import { InputText } from "primereact/inputtext";
 import { Dropdown } from "primereact/dropdown";
-import { FileUpload } from "primereact/fileupload";
 import { Button } from "primereact/button";
 import {
   paymentMethodAtom,
@@ -15,6 +14,7 @@ import { uploadFile } from "../../../services/storageservices";
 import { v4 as uuidv4 } from "uuid";
 import { serverTimestamp } from "firebase/firestore";
 import { Toast } from "primereact/toast";
+import { auth } from "../../../config/fbconfig";
 
 const ZakatPay = () => {
   const toast = useRef(null);
@@ -66,6 +66,7 @@ const ZakatPay = () => {
         nama_bank_tujuan,
         no_rekening_tujuan,
         status: false,
+        user_uid: auth.currentUser.uid,
         ...transactionData,
         waktu_pembayaran: serverTimestamp(),
       })
@@ -82,7 +83,14 @@ const ZakatPay = () => {
           setNama_bank_tujuan(null);
           setNo_rekening_tujuan("");
         })
-        .catch((err) => console.log(err))
+        .catch((err) => {
+          toast.current.show({
+            severity: "error",
+            summary: "Error",
+            detail: err.message,
+            life: 3000,
+          });
+        })
     );
   };
   return (

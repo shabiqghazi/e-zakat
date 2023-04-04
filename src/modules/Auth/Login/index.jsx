@@ -1,30 +1,34 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { _signIn } from "../../../services/authservices";
-import { auth } from "../../../config/fbconfig";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { AuthPageWrapper } from "../shared-components/AuthPageWrapper";
+import { userDataAtom } from "../../../states/authstates";
 import { useAtom } from "jotai";
-import { userAtom } from "../../../states/authstates";
-import { useNavigate } from "react-router";
+import { Toast } from "primereact/toast";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useAtom(userAtom);
-  const navigate = useNavigate();
+  const [userData, setUserData] = useAtom(userDataAtom);
+  const toast = useRef(null);
 
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
-      await _signIn(email, password);
-      navigate("/");
+      setUserData(await _signIn(email, password));
     } catch (err) {
-      console.log(err);
+      toast.current.show({
+        severity: "error",
+        summary: "Error",
+        detail: err.message,
+        life: 3000,
+      });
     }
   };
   return (
     <AuthPageWrapper title="Login">
+      <Toast ref={toast} />
       <form
         onSubmit={handleSignIn}
         className="flex flex-col gap-8 items-center pt-8"

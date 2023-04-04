@@ -1,10 +1,10 @@
-import { Button } from "primereact/button";
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import briLogo from "../../shared-components/bri.png";
 import bsiLogo from "../../shared-components/bsi.png";
-import { useAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import { paymentMethodAtom, creditCardAtom } from "./states/zakatstates";
+import { userDataAtom } from "../../states/authstates";
 
 export const PaymentMethods = () => {
   const [showPaymentMethods, setShowPaymetMethods] = useState(false);
@@ -66,10 +66,23 @@ export const PaymentMethods = () => {
   );
 };
 const Zakat = () => {
+  const userData = useAtomValue(userDataAtom);
   const navigate = useNavigate();
   return (
     <>
       <div className="flex flex-col gap-2">
+        {/* {console.log(userData)} */}
+        {userData?.isAdmin ? (
+          <button
+            onClick={() => navigate("/zakat/manage")}
+            className="flex items-center bg-lime-400 text-white"
+          >
+            <i className="pi pi-sliders-h py-6 px-4"></i>
+            <p>Manage Zakat</p>
+          </button>
+        ) : (
+          ""
+        )}
         <button
           onClick={() => navigate("/zakat/calculate")}
           className="flex items-center bg-amber-400 text-white"
