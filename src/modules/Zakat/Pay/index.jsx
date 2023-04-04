@@ -39,6 +39,7 @@ const ZakatPay = () => {
     { name: "Perhiasan", code: "perhiasan" },
     { name: "Uang", code: "uang" },
     { name: "Pendapatan", code: "hasil_pendapatan" },
+    { name: "Hasil Pertanian", code: "hasil_pertanian" },
     { name: "Harta Temuan", code: "harta_temuan" },
     { name: "Hasil Pertambangan", code: "hasil_pertambangan" },
   ];
